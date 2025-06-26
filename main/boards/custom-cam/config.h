@@ -1,0 +1,82 @@
+#ifndef _BOARD_CONFIG_H_
+#define _BOARD_CONFIG_H_
+
+#include <driver/gpio.h>
+
+#define AUDIO_INPUT_SAMPLE_RATE  16000
+#define AUDIO_OUTPUT_SAMPLE_RATE 24000
+
+// 音频I2S引脚配置 - 根据你的开发板实际情况修改
+#define AUDIO_I2S_MIC_GPIO_WS   GPIO_NUM_1
+#define AUDIO_I2S_MIC_GPIO_SCK  GPIO_NUM_2
+#define AUDIO_I2S_MIC_GPIO_DIN  GPIO_NUM_42
+#define AUDIO_I2S_SPK_GPIO_DOUT GPIO_NUM_39
+#define AUDIO_I2S_SPK_GPIO_BCLK GPIO_NUM_40
+#define AUDIO_I2S_SPK_GPIO_LRCK GPIO_NUM_41
+
+// 按键配置
+#define BUILTIN_LED_GPIO        GPIO_NUM_48
+#define BOOT_BUTTON_GPIO        GPIO_NUM_0
+#define VOLUME_UP_BUTTON_GPIO   GPIO_NUM_NC
+#define VOLUME_DOWN_BUTTON_GPIO GPIO_NUM_NC
+
+// 摄像头引脚配置 - 这是最重要的部分，需要根据你的实际接线修改
+#define CAMERA_PIN_D0 GPIO_NUM_11    // 数据线D0
+#define CAMERA_PIN_D1 GPIO_NUM_9     // 数据线D1
+#define CAMERA_PIN_D2 GPIO_NUM_8     // 数据线D2
+#define CAMERA_PIN_D3 GPIO_NUM_10    // 数据线D3
+#define CAMERA_PIN_D4 GPIO_NUM_12    // 数据线D4
+#define CAMERA_PIN_D5 GPIO_NUM_18    // 数据线D5
+#define CAMERA_PIN_D6 GPIO_NUM_17    // 数据线D6
+#define CAMERA_PIN_D7 GPIO_NUM_16    // 数据线D7
+#define CAMERA_PIN_XCLK GPIO_NUM_15  // 时钟信号
+#define CAMERA_PIN_PCLK GPIO_NUM_13  // 像素时钟
+#define CAMERA_PIN_VSYNC GPIO_NUM_6  // 垂直同步
+#define CAMERA_PIN_HREF GPIO_NUM_7   // 水平同步
+#define CAMERA_PIN_SIOC GPIO_NUM_5   // I2C时钟
+#define CAMERA_PIN_SIOD GPIO_NUM_4   // I2C数据
+#define CAMERA_PIN_PWDN GPIO_NUM_NC  // 电源控制，如果没有可以设为NC
+#define CAMERA_PIN_RESET GPIO_NUM_NC // 复位引脚，如果没有可以设为NC
+
+#define XCLK_FREQ_HZ 20000000        // 摄像头时钟频率
+
+// LCD显示屏配置 - 根据你的屏幕类型修改
+#define DISPLAY_SPI_SCK_PIN     GPIO_NUM_20
+#define DISPLAY_SPI_MOSI_PIN    GPIO_NUM_21
+#define DISPLAY_DC_PIN          GPIO_NUM_19
+#define DISPLAY_RST_PIN         GPIO_NUM_NC
+#define DISPLAY_SPI_CS_PIN      GPIO_NUM_22
+#define DISPLAY_BL_PIN          GPIO_NUM_14
+
+// 根据你的LCD屏幕参数配置
+#ifdef CONFIG_LCD_ST7789_240X320
+#define DISPLAY_WIDTH   240
+#define DISPLAY_HEIGHT  320
+#define DISPLAY_MIRROR_X false
+#define DISPLAY_MIRROR_Y false
+#define DISPLAY_SWAP_XY false
+#define DISPLAY_INVERT_COLOR    true
+#define DISPLAY_RGB_ORDER  LCD_RGB_ELEMENT_ORDER_BGR
+#define DISPLAY_OFFSET_X  0
+#define DISPLAY_OFFSET_Y  0
+#define DISPLAY_BACKLIGHT_OUTPUT_INVERT false
+#define DISPLAY_SPI_MODE 0
+#endif
+
+#ifdef CONFIG_LCD_CUSTOM
+#define DISPLAY_WIDTH   240
+#define DISPLAY_HEIGHT  320
+#define DISPLAY_MIRROR_X false
+#define DISPLAY_MIRROR_Y false
+#define DISPLAY_SWAP_XY false
+#define DISPLAY_INVERT_COLOR    true
+#define DISPLAY_RGB_ORDER  LCD_RGB_ELEMENT_ORDER_RGB
+#define DISPLAY_OFFSET_X  0
+#define DISPLAY_OFFSET_Y  0
+#define DISPLAY_BACKLIGHT_OUTPUT_INVERT false
+#define DISPLAY_SPI_MODE 0
+#endif
+
+#define DISPLAY_BACKLIGHT_PIN DISPLAY_BL_PIN
+
+#endif // _BOARD_CONFIG_H_
